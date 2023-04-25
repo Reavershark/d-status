@@ -1,0 +1,16 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/d-status
+d-status.so
+d-status.dylib
+d-status.dll
+d-status.a
+d-status.lib
+d-status-test-*
+*.exe
+*.pdb
+*.o
+*.obj
+*.lst

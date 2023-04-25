@@ -1,0 +1,17 @@
+{
+	"name": "d-status",
+	"description": "A minimal D application.",
+	"authors": [
+		"jonas"
+	],
+	"license": "proprietary",
+	"copyright": "Copyright © 2023, jonas",
+	"dependencies": {
+		"vibe-d:http": "~>0.9.6",
+		"requests:vibed": "~>2.0.9"
+	},
+	"toolchainRequirements": {
+		"ldc": ">=1.30.0"
+	},
+	"dflags": ["-preview=shortenedMethods"]
+}

@@ -1,0 +1,108 @@
+{
+    "categories": [
+        {
+            "name": "Core",
+            "sites": [
+                {
+                    "name": "dlang.org",
+                    "url": "https://dlang.org/"
+                },
+                {
+                    "name": "D Forums",
+                    "url": "https://forum.dlang.org/"
+                },
+                {
+                    "name": "DUB Packages",
+                    "url": "https://code.dlang.org/"
+                }
+            ]
+        },
+        {
+            "name": "Documentation",
+            "sites": [
+                {
+                    "name": "Standard library docs",
+                    "description": "Official documentation for phobos (std.* and etc.*) and druntime (core.*).",
+                    "url": "https://dlang.org/phobos/index.html"
+                },
+                {
+                    "name": "dpldocs",
+                    "description": "Searchable documentation for all dub packages in one place.",
+                    "author": "adr",
+                    "url": "https://dpldocs.info/"
+                },
+                {
+                    "name": "Language spec",
+                    "url": "https://dlang.org/spec/spec.html"
+                },
+                {
+                    "name": "D Wiki",
+                    "description": "Wiki with lot of content, but not everything is up-to-date.",
+                    "url": "https://wiki.dlang.org/"
+                }
+            ]
+        },
+        {
+            "name": "Learning",
+            "sites": [
+                {
+                    "name": "Dlang tour",
+                    "url": "https://tour.dlang.org/"
+                },
+                {
+                    "name": "run.dlang.org",
+                    "description": "Online compiler with code sharing and a lot of features hidden in the help page.",
+                    "url": "https://run.dlang.org/"
+                },
+                {
+                    "name": "Programming in D",
+                    "description": "Comprehensive free online book for newcomers to the language.",
+                    "author": "Ali Çehreli",
+                    "url": "https://ddili.org/ders/d.en/index.html"
+                },
+                {
+                    "name": "D Wiki: Tutorials",
+                    "url": "https://wiki.dlang.org/Tutorials"
+                }
+            ]
+        },
+        {
+            "name": "Community / Ask questions",
+            "sites": [
+                {
+                    "name": "Offical D discord",
+                    "description": "Feel free to ask any questions! Please make sure to use the approprate channel. (Most likely #programming)",
+                    "url": "https://discord.gg/bMZk9Q4"
+                },
+                {
+                    "name": "Stackoverflow 'd' tag",
+                    "url": "https://stackoverflow.com/questions/tagged/d"
+                },
+                {
+                    "name": "D Forum: Learn group",
+                    "url": "https://forum.dlang.org/group/learn"
+                }
+            ]
+        },
+        {
+            "name": "Other",
+            "sites": [
+                {
+                    "name": "Make-A-DMan",
+                    "description": "Praise",
+                    "author": "Webfreak",
+                    "url": "https://wfr.moe/make-a-dman"
+                },
+                {
+                    "name": "awesome-d",
+                    "description": "A curated list of awesome D documents, frameworks, libraries and software.",
+                    "url": "https://github.com/dlang-community/awesome-d"
+                },
+                {
+                    "name": "404 test",
+                    "url": "https://google.com/404"
+                }
+            ]
+        }
+    ]
+}

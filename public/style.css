@@ -1,0 +1,67 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700);
+
+body {
+    font-family: "Roboto Slab", sans-serif;
+    background-color: #fafafa;
+}
+
+a {
+    color: #742620;
+}
+
+/* Row of cards */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Card with site status */
+.card {
+    width: 200px;
+    height: 150px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f1f1f1f0;
+    background-color: #b0393102;
+    box-shadow: 2px 2px 4px 0 #b0393180;
+    border: 2px #74262080 solid;
+    position: relative;
+}
+
+/* Clickable name of a site */
+.card-title {
+    font-size: larger;
+}
+
+.card-description {
+    font-size: smaller;
+}
+
+.card-author {
+    margin-bottom: 6px;
+    position: absolute;
+    bottom: 0;
+}
+
+.dman {
+    float: right;
+    height: 100px;
+}
+
+.spin {
+    animation: spin 4s infinite linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: scaleX(1);
+    }
+
+    50% {
+        transform: scaleX(-1);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}

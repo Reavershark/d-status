@@ -1,0 +1,46 @@
+// Args:
+//   - Category[] categories
+//   - SysTime lastCheck
+
+- import std.datetime.systime : SysTime, Clock;
+- import core.time : Duration;
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="style.css")
+        title D status
+    body
+        img.dman#dman(src="dman.png", onclick="document.getElementById(\"dman\").classList += \" spin\"")
+        h1 D community sites status
+        - SysTime currTime = Clock.currTime;
+        - currTime.fracSecs = Duration.init;
+        - lastCheck.fracSecs = Duration.init;
+        p Last check: #{currTime - lastCheck} ago
+        form(action="triggerManualCheck")
+            input(type="submit", value="Trigger manual check")
+        div
+            - foreach (category; categories)
+                h2(style="border-bottom: 2px solid black;")= category.name
+                div.row
+                    - foreach (site; category.sites)
+                        p.card
+                            a.card-title(href=site.url)= site.name
+                            br
+                            |= "Status: "
+                            - if (site.lastCode == 0)
+                                b unknown
+                            - else if (site.lastCode == -1)
+                                b(style="color: red;") timeout
+                            - else if (200 <= site.lastCode && site.lastCode < 300)
+                                b(style="color: green;")= site.lastCode
+                            - else
+                                b(style="color: red;")= site.lastCode
+                            br
+                            - if (site.description.length)
+                                i.card-description= site.description
+                                br
+                            - if (site.author.length)
+                                span.card-author Author: #{site.author}
