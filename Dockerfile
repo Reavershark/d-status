@@ -1,7 +1,7 @@
 #################
 # Builder stage #
 #################
-FROM alpine:3.17 AS builder
+FROM alpine:3.20 AS builder
 
 RUN apk add --no-cache gcc ldc dub musl-dev zlib-dev openssl-dev
 ENV DC=ldc2
@@ -22,7 +22,7 @@ RUN dub build --build=release
 ################
 # Runner stage #
 ################
-FROM alpine:3.17
+FROM alpine:3.20
 
 RUN apk add --no-cache ldc-runtime zlib libssl3
 
@@ -33,8 +33,8 @@ COPY sites.json /app/
 
 RUN addgroup -S web && adduser -S web -G web
 
-ENV LISTEN_ADDRESS 0.0.0.0
-ENV LISTEN_PORT 80
+ENV LISTEN_ADDRESS=0.0.0.0
+ENV LISTEN_PORT=80
 EXPOSE 80
 
 CMD ["./d-status", "--user=web", "--group=web"]

@@ -1,9 +1,17 @@
-// Args:
-//   - Category[] categories
-//   - SysTime lastCheck
-
-- import std.datetime.systime : SysTime, Clock;
+- import d_status.config : Config, ConfigManager;
+- import d_status.status_checker : StatusChecker;
+-
 - import core.time : Duration;
+-
+- import std.datetime.systime : SysTime, Clock;
+-
+- const Config.Category[] categories = ConfigManager.constInstance.categories;
+- const StatusChecker.CheckResult[string] siteCheckResultMap = StatusChecker.constInstance.siteCheckResultMap;
+
+- SysTime currTime = Clock.currTime;
+- SysTime lastCheckTime = StatusChecker.constInstance.lastCheckTime;
+- currTime.fracSecs = Duration.zero;
+- lastCheckTime.fracSecs = Duration.zero;
 
 doctype html
 html(lang="en")
@@ -11,33 +19,38 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="style.css")
+        script(src="script.js")
         title D status
     body
-        img.dman#dman(src="dman.png", onclick="document.getElementById(\"dman\").classList += \" spin\"")
+        img.dman#dman(src="dman.png", onclick="spin()")
         h1 D community sites status
-        - SysTime currTime = Clock.currTime;
-        - currTime.fracSecs = Duration.init;
-        - lastCheck.fracSecs = Duration.init;
-        p Last check: #{currTime - lastCheck} ago
-        form(action="triggerManualCheck")
-            input(type="submit", value="Trigger manual check")
+        p
+        |Last check:
+        - if (lastCheckTime == SysTime.init)
+            |never
+        - else
+            |#{currTime - lastCheckTime} ago
+        input(type="submit", value="Trigger manual check", onclick="triggerManualCheck()")
         div
             - foreach (category; categories)
                 h2(style="border-bottom: 2px solid black;")= category.name
                 div.row
                     - foreach (site; category.sites)
+                        - StatusChecker.CheckResult checkResult;
+                        - if (site.name in siteCheckResultMap)
+                            - checkResult = siteCheckResultMap[site.name];
                         p.card
                             a.card-title(href=site.url)= site.name
                             br
                             |= "Status: "
-                            - if (site.lastCode == 0)
+                            - if (checkResult.code == 0)
                                 b unknown
-                            - else if (site.lastCode == -1)
+                            - else if (checkResult.code == uint.max)
                                 b(style="color: red;") timeout
-                            - else if (200 <= site.lastCode && site.lastCode < 300)
-                                b(style="color: green;")= site.lastCode
+                            - else if (200 <= checkResult.code && checkResult.code < 300)
+                                b(style="color: green;")= checkResult.code
                             - else
-                                b(style="color: red;")= site.lastCode
+                                b(style="color: red;")= checkResult.code
                             br
                             - if (site.description.length)
                                 i.card-description= site.description

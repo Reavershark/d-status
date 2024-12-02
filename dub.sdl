@@ -1,0 +1,9 @@
+name "d-status"
+
+targetType "executable"
+
+dependency "vibe-d:http" version="~>0.10.1"
+dependency "requests:vibed" version="~>2.1.3"
+
+toolchainRequirements ldc=">=1.33.0"
+dflags "-preview=shortenedMethods"
