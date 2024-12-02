@@ -8,8 +8,8 @@ ENV DC=ldc2
 
 WORKDIR /build
 
-# Build dependendecies
-COPY dub.json dub.selections.json /build/
+# Fetch and build dependendecies
+COPY dub.sdl dub.selections.json /build/
 RUN mkdir /build/source && echo "void main(){}" > /build/source/main.d
 RUN dub build --build=release
 RUN rm -rf /build/source
@@ -29,12 +29,10 @@ RUN apk add --no-cache ldc-runtime zlib libssl3
 WORKDIR /app
 COPY --from=builder /build/d-status /app/
 COPY public/ /app/public
-COPY sites.json /app/
+COPY config.json /app/
 
 RUN addgroup -S web && adduser -S web -G web
 
-ENV LISTEN_ADDRESS=0.0.0.0
-ENV LISTEN_PORT=80
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["./d-status", "--user=web", "--group=web"]
